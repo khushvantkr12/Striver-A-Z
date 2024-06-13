@@ -29,3 +29,122 @@ class Solution {
        return max({x,y,z});
     }
 };
+
+//DRY RUN
+Input:
+n = 3
+points = [[1,2,5],[3,1,1],[3,3,3]]
+Output:
+11
+
+Step-by-Step Computation
+Starting with choice 0 at index 0:
+
+solve(0, points, 0)
+Recursive Calls from (0, 0):
+
+solve(1, points, 1)
+solve(1, points, 2)
+Recursive Calls from (1, 1):
+
+solve(2, points, 0)
+solve(2, points, 2)
+Recursive Calls from (2, 0):
+
+solve(3, points, 1) (out of bounds, returns 0)
+solve(3, points, 2) (out of bounds, returns 0)
+Points collected from (2, 0) = points[2][0] = 3
+Total points = 3
+Recursive Calls from (2, 2):
+
+solve(3, points, 0) (out of bounds, returns 0)
+solve(3, points, 1) (out of bounds, returns 0)
+Points collected from (2, 2) = points[2][2] = 3
+Total points = 3
+Return to (1, 1):
+
+Points collected from (1, 1) = points[1][1] + max(3, 3) = 1 + 3 = 4
+Recursive Calls from (1, 2):
+
+solve(2, points, 0)
+solve(2, points, 1)
+Recursive Calls from (2, 0) is already computed as 3.
+
+Recursive Calls from (2, 1):
+
+solve(3, points, 0) (out of bounds, returns 0)
+solve(3, points, 2) (out of bounds, returns 0)
+Points collected from (2, 1) = points[2][1] = 3
+Total points = 3
+Return to (1, 2):
+
+Points collected from (1, 2) = points[1][2] + max(3, 3) = 1 + 3 = 4
+Return to (0, 0):
+
+Points collected from (0, 0) = points[0][0] + max(4, 4) = 1 + 4 = 5
+Similarly, compute for starting choices 1 and 2:
+Starting with choice 1 at index 0:
+
+solve(0, points, 1)
+Recursive Calls from (0, 1):
+
+solve(1, points, 0)
+solve(1, points, 2)
+Recursive Calls from (1, 0):
+
+solve(2, points, 1)
+solve(2, points, 2)
+Recursive Calls from (2, 1) is already computed as 3.
+
+Recursive Calls from (2, 2) is already computed as 3.
+
+Return to (1, 0):
+
+Points collected from (1, 0) = points[1][0] + max(3, 3) = 3 + 3 = 6
+Recursive Calls from (1, 2) is already computed as 4.
+
+Return to (0, 1):
+
+Points collected from (0, 1) = points[0][1] + max(6, 4) = 2 + 6 = 8
+Starting with choice 2 at index 0:
+
+solve(0, points, 2)
+Recursive Calls from (0, 2):
+
+solve(1, points, 0)
+solve(1, points, 1)
+Recursive Calls from (1, 0) is already computed as 6.
+
+Recursive Calls from (1, 1) is already computed as 4.
+
+Return to (0, 2):
+
+Points collected from (0, 2) = points[0][2] + max(6, 4) = 5 + 6 = 11
+Final Calculation:
+The final results are:
+x = solve(0, points, 0) = 5
+y = solve(0, points, 1) = 8
+z = solve(0, points, 2) = 11
+The maximum points are max({x, y, z}) = 11.
+Explanation with Dry Run:
+Starting with choice 0, we calculate solve(0, points, 0):
+
+From (0,0), choose 1 or 2 in the next row.
+For choice 1 in the next row, maximum points: 1 + max(3, 3) = 4
+For choice 2 in the next row, maximum points: 1 + max(3, 3) = 4
+Total for choice 0: 1 + max(4, 4) = 5
+Starting with choice 1, we calculate solve(0, points, 1):
+
+From (0,1), choose 0 or 2 in the next row.
+For choice 0 in the next row, maximum points: 2 + max(3, 3) = 6
+For choice 2 in the next row, maximum points: 2 + max(3, 3) = 4
+Total for choice 1: 2 + max(6, 4) = 8
+Starting with choice 2, we calculate solve(0, points, 2):
+
+From (0,2), choose 0 or 1 in the next row.
+For choice 0 in the next row, maximum points: 5 + max(3, 3) = 6
+For choice 1 in the next row, maximum points: 5 + max(3, 3) = 4
+Total for choice 2: 5 + max(6, 4) = 11
+Therefore, the maximum points obtained is 11.
+
+The detailed recursive steps and calculations confirm that the code works correctly to compute the maximum points, considering all possible choices at each step.
