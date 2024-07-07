@@ -33,7 +33,7 @@ public:
                 if (curr_wt + wt < result[curr_node]) {
                     pq.push({curr_wt + wt, curr_node});
                     result[curr_node] = curr_wt + wt;
-                    //suppose kro ki tm first time aaye ho n-1 pe aur tum jaha se aaye ho waha pe 3 hai to tm 3 ko direct ways[n-1] me daaloge na..isiliye ye likhe hai
+                    //suppose kro ki tm first time aaye ho ways[n-1] pe aur tum jaha se aaye ho waha pe 3 hai to tm 3 ko direct ways[n-1] me daaloge na..isiliye ye likhe hai
                     ways[curr_node] = ways[node];
                 } else if (curr_wt + wt == result[curr_node]) {
                     ways[curr_node] = (ways[curr_node] + ways[node]) % MOD;
