@@ -46,10 +46,10 @@ public:
             }
         }
     }
-    for(int i=n; i>=0; i--){
-        for(int j=m; j>=0; j--){
-            //suppose dp[5][5] is same (e and e) then it takes value from 1 + dp[i + 1][j + 1]..but if not(d!=e) then it takes from dp[i][j] = max(skip1, skip2);
-            cout<<dp[i][j]<<" ";
+   for(int i=0; i<=n; i++){
+        for(int j=0; j<=m; j++){
+            //suppose dp[4][2] is same (e and e) then it takes value from 1 + dp[i + 1][j + 1]..but if not(d!=e) then it takes from dp[i][j] = max(skip1, skip2);
+         cout<<dp[i][j]<<" ";
         }cout<<endl;
     }
     return dp[0][0];
