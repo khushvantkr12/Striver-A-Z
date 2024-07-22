@@ -58,7 +58,7 @@ public:
         vector<string> mergemail[n];
         for (auto it : mp) {
             string mail = it.first;
-            int node = dsu.find(it.second);
+            int node = dsu.find(it.second);//suppose it.second=3 aaya lekin 3 jo hai wo 1 ka child hai..so yaha pe node=1 hojayega..
             mergemail[node].push_back(mail);
         }
 

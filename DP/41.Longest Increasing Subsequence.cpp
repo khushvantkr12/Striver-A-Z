@@ -45,7 +45,21 @@ public:
 //         cout<<endl;
 //        }
          return dp[0][0];
-    
+
+     //Method 2:---
+     vector<int>dp(n,1);
+         //LIS ending at its ith index
+       int maxlength=0;
+         for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+            maxlength = max(maxlength, dp[i]);
+        }
+
+        return maxlength;
     }
 };
 //DRY RUN
