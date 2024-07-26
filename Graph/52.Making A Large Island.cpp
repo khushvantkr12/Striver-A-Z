@@ -73,6 +73,7 @@ public:
                     int newdx = i + dx[k];
                     int newdy = j + dy[k];
                     if (isCheck(newdx, newdy, n) && grid[newdx][newdy] == 1) {
+                       //numbering likh rhe hai taaki connect karne me aasani ho...
                         int node = i * n + j;
                         int adjnode = newdx * n + newdy;
                         dsu.Union(node, adjnode);
@@ -88,20 +89,23 @@ public:
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) continue;
-                set<int> st; // to store unique connected numbering to his parent
+                //st is a set that will store unique parent nodes of the neighboring 1s. Using a set ensures we do not count the same island more than once.
+                set<int> st; 
                 for (int k = 0; k < 4; k++) {
                     int newdx = i + dx[k];
                     int newdy = j + dy[k];
                     if (isCheck(newdx, newdy, n) && grid[newdx][newdy] == 1) {
+                         //dsu.find(newdx * n + newdy) finds the root parent of the neighboring island and inserts it into the set st.
                         st.insert(dsu.find(newdx * n + newdy));
                     }
                 }
                 // Calculate size
-                int size = 1; // we are considering this 0 to 1
+                int size = 0; // we are considering this 0 to 1
                 for (auto it : st) {
                     size += dsu.getSize(it);
                 }
-                mx = max(mx, size);
+                //1+size isiliye kyoki jis 0 ko 1 bana rhe hai uska bhi to count add karenge na..
+                mx = max(mx, 1+size);
             }
         }
         return mx;
