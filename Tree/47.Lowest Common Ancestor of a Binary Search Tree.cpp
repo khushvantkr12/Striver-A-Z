@@ -5,6 +5,7 @@ class Solution {
 public:
     TreeNode* solve(TreeNode* root, TreeNode* p, TreeNode* q){
         //base
+        //last intersection point (b/w p and q) traverse from last is called LCA
         if(root == NULL){
             return NULL;
         }
