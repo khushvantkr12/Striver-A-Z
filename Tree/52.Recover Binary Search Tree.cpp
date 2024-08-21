@@ -20,8 +20,9 @@ public:
         if (root == nullptr) {
             return;
         }
-
+        //again do inorder to compare
         kittu(i, root->left, ans);
+        //swap
         if (root->val != ans[i]) {
             root->val = ans[i];
         }
