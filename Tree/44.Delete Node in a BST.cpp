@@ -5,7 +5,7 @@ public:
     int findmax(TreeNode* root, int currentMax) {
         while (root != NULL) {
             currentMax = max(currentMax, root->val);
-            root = root->right;
+            root=root->right;
         }
         return currentMax;
     }
@@ -14,9 +14,9 @@ public:
         if (root == NULL) return NULL;
         
         if (root->val < key) {
-            root->right = deleteNode(root->right, key);
+            root->right= deleteNode(root->right, key);
         } else if (root->val > key) {
-            root->left = deleteNode(root->left, key);
+           root->left= deleteNode(root->left, key);
         } else {
             if (root->left != NULL && root->right != NULL) {
                 //dekho agar dono null nhi hai to left part me se max khojo..uske baad usko replace krdo jo  key tha..
@@ -25,18 +25,12 @@ public:
                 //uske baad jisko tm max khoja hai usko remove kr do root->left me se..kyoki wo 2 jagah hai...
                 root->left = deleteNode(root->left, v);
                 
-            } else if (root->left != NULL) {
+            } else if (root->right == NULL) {
                return root->left;
-               
-               
-            } else if (root->right != NULL) {
+            } else if (root->left == NULL) {
                 return root->right;
                 
-               
-            } else {
-              
-                return NULL;
-            }
+            }  
         }
         return root;
     }
