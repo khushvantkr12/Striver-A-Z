@@ -28,7 +28,7 @@ public:
                     word[i]=j;
                     if(s.find(word)!=s.end()){
                         q.push({word,y+1});
-                        s.erase(word);//dekkho suppose "hot" se "dot" banaya tum fir tm "hot" ko pop kkiya queue se..lekin tm usko set se nhi hataya to dekho dikkat kya hoga.."dot" pe hm iterate maarenge atoz tk to wo ek time pe "hot" bn jayega aur set usko khoj lega aur phir se usko queue me push kr dega..isiliye hmko usko erase karna padega..samjha
+                        s.erase(word);//dekkho suppose "hot" se "dot" banaya tum fir tm "hot" ko pop kiya queue se..lekin tm usko set se nhi hataya to dekho dikkat kya hoga.."dot" pe hm iterate maarenge a to z tk to wo ek time pe "hot" bn jayega aur set usko khoj lega aur phir se usko queue me push kr dega aur ye hm nhi chahte..isiliye hmko usko erase karna padega..samjha
                     }
                 }
             }
