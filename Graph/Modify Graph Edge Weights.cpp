@@ -40,7 +40,9 @@ public:
                 }
             }
         }
-
+         while(!q.empty()){
+                    q.pop();
+                }
         //if shortest path < target , then return empty array
         if(dis[destination]<target){
             return {};
@@ -67,9 +69,7 @@ public:
                 e[2]=1;
                 adj[e[1]].push_back({e[0],1});
                 adj[e[0]].push_back({e[1],1});
-                while(!q.empty()){
-                    q.pop();
-                }
+              
 
                 //Dijkstra 
                 q.push({0,source});
