@@ -57,7 +57,7 @@ public:
             return edges;
         }
 
-
+        //case: dis[destination]>target
         // Now changing weight of each edge with weight -1 to 1 one by one and trying to get shortest path
         for(int i=0 ; i<edges.size() ; i++){
             auto &e=edges[i];
