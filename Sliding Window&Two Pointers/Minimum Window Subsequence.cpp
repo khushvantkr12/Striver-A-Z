@@ -9,7 +9,6 @@ class Solution {
         int minWindow=INT_MAX;
         int start=-1;
         while(i<n){
-        //for(int i=0;i<s.length();i++){
             // If characters are same, then increment the j pointer
             if(s[i]==t[j]){
                 j++;
@@ -18,7 +17,7 @@ class Solution {
             if(j==t.length()){
                 j--;
                 //taki maximum index ko store kr sake
-                int end=i;
+                int end=i;//ye mere ko end-i+1 me kaam aayega..substr ka length nikalne me
                 // We are doing j-- in order to minimize our window size
                 while(j>=0){
                     if(s[i]==t[j]){
