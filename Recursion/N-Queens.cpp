@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/n-queens/description/
 //TC-O(n! * n)-->n is for check function,,,n! for backtracking
-//SC-O(n^2)
+//SC-O(n^2)//due to 2D grid
 class Solution {
 public:
     bool check(int x, int y,vector<vector<char>>&grid,vector<vector<string>>&ans,int n){
