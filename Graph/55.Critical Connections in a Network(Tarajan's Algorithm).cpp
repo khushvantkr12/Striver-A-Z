@@ -33,7 +33,11 @@ public:
             adj[u].push_back(v);
             adj[v].push_back(u);
         }
-
+// disc (Discovery Time):
+// Purpose: The disc array records the time (or order) when a node is first visited during the Depth First Search (DFS) traversal.
+// Function: It helps in keeping track of the discovery time of each node. For each node u, disc[u] is set to the current time when the DFS reaches node u.
+// low (Lowest Discovery Time Reachable):
+// Purpose: The low array stores the lowest discovery time reachable from a node u, either by its own subtree or through a back edge.
         vector<int> visited(n, 0);
         vector<int> disc(n, INT_MAX);
         vector<int> low(n, INT_MAX);
