@@ -55,7 +55,8 @@ public:
     //SC-O(N)
      vector<int>dp(n,1);
          //LIS ending at its ith index
-        //DEKHO SIMPLE QUESTION PUCHNA HAI KI: j puchega i se ki tujhpe end hone wala sabse maximum subsequence kya hai? aur kya tum mere se chota ho agar ha to apna value ko mere sath add kar do..
+       //DEKHO SIMPLE QUESTION PUCHNA HAI KI: j puchega i se ki tujhpe end hone wala sabse maximum subsequence kya hai? aur kya tum mere se chota ho agar ha to apna value ko mere sath add kar do..
+       
        int maxlength=0;
          for (int i = 0; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
@@ -76,7 +77,8 @@ public:
         class Solution {
         public:
     int lengthOfLIS(vector<int>& nums) {
-        //dekho isme karna ye hai ki ..harek element apna just greater element ya apna equal khojega..(just bada)..agar usko apna next bada ya equal mil gya to wo usse usko replace kr dega..agar suppose kro nhi mila to wo us vector me largest element hoga to vo vector me push ho jayega... 
+        //dekho isme karna ye hai ki ..harek element apna just greater element ya apna equal khojega..(just bada)..agar usko apna next bada ya equal mil gya to wo usse usko replace kr dega..agar suppose kro nhi mila to wo us vector me largest element hoga to vo vector me push ho jayega...
+        //jis order me value store hoga ans me wahi mera LIS banega
          int n = nums.size();
       
         vector<int> ans;
