@@ -67,6 +67,32 @@ public:
         }
 
         return maxlength;
+
+        //Method 3:---
+        //lazy Sorting
+        //TC-O(NLOGN)
+        //SC-O(N)
+
+        class Solution {
+        public:
+    int lengthOfLIS(vector<int>& nums) {
+        //dekho isme karna ye hai ki ..harek element apna just greater element ya apna equal khojega..(just bada)..agar usko apna next bada ya equal mil gya to wo usse usko replace kr dega..agar suppose kro nhi mila to wo us vector me largest element hoga to vo vector me push ho jayega... 
+         int n = nums.size();
+      
+        vector<int> ans;
+        ans.push_back(nums[0]);
+
+        for (int i = 1; i < n; i++) {
+            if (ans.back() < nums[i]) {
+                ans.push_back(nums[i]);
+            } else {
+               int it = lower_bound(ans.begin(), ans.end(), nums[i])-ans.begin();
+                ans[it]= nums[i];//ye replace kr dega pahle wale index ko aur uske jagah pe naya value rakh dega
+            }
+        }
+        return ans.size();
+    }
+};
     }
 };
 //DRY RUN
