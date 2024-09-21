@@ -3,13 +3,15 @@
 class Solution {
 public:
 //MEMOIZATION
+//TC-O(N^2)
+//SC-O(N^2)+O(N)//extra stack space 
     int solve(int prev,int curr,vector<int>& nums){
         //base
        if(curr>=nums.size()){
         return 0;
        }
 
-        int take=0,skip1=0,skip2=0;
+        int take=0,skip1=0;
         if(prev==-1||nums[curr]>nums[prev]){
             take=1+solve(curr,curr+1,nums);
             
@@ -22,11 +24,13 @@ public:
           int n = nums.size();
         vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
        //TABULATION
+        
         for (int i = n; i>=0; --i) {
             dp[n][i] = 0; 
             dp[i][n] = 0; 
         }
-       
+       //TC-O(N^2)
+      //SC-O(N^2)
         int ans=0;
         for (int i = n - 1; i >= 0; --i) {
             for (int prev = i - 1; prev >= -1; --prev) {
@@ -47,8 +51,12 @@ public:
          return dp[0][0];
 
      //Method 2:---
+    //TC-O(N^2)
+    //SC-O(N)
      vector<int>dp(n,1);
          //LIS ending at its ith index
+       //DEKHO SIMPLE QUESTION PUCHNA HAI KI: j puchega i se ki tujhpe end hone wala sabse maximum subsequence kya hai? aur kya tum mere se chota ho agar ha to apna value ko mere sath add kar do..
+       
        int maxlength=0;
          for (int i = 0; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
@@ -60,6 +68,34 @@ public:
         }
 
         return maxlength;
+
+        //Method 3:---
+        //any confusion watch patience sorting MIK video
+        //lazy Sorting
+        //TC-O(NLOGN)
+        //SC-O(N)
+
+        class Solution {
+        public:
+    int lengthOfLIS(vector<int>& nums) {
+        //dekho isme karna ye hai ki ..harek element apna just greater element ya apna equal khojega..(just bada)..agar usko apna next bada ya equal mil gya to wo usse usko replace kr dega..agar suppose kro nhi mila to wo us vector me largest element hoga to vo vector me push ho jayega...
+        //jis order me value store hoga ans me wahi mera LIS banega
+         int n = nums.size();
+      
+        vector<int> ans;
+        ans.push_back(nums[0]);
+
+        for (int i = 1; i < n; i++) {
+            if (ans.back() < nums[i]) {
+                ans.push_back(nums[i]);
+            } else {
+               int it = lower_bound(ans.begin(), ans.end(), nums[i])-ans.begin();
+                ans[it]= nums[i];//ye replace kr dega pahle wale index ko aur uske jagah pe naya value rakh dega
+            }
+        }
+        return ans.size();
+    }
+};
     }
 };
 //DRY RUN
