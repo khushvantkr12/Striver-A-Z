@@ -4,7 +4,7 @@
 // Compare it with the previous elements and shift larger elements one position to the right.
 // Insert the current element into its correct position.
 // Repeat for all elements in the array.
-
+//TC(avg and worst)-O(n^2) and best O(n)
 class Solution {
   public:
     // Please change the array in-place
