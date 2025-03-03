@@ -1,6 +1,6 @@
 int Solution::solve(vector<int> &A, int B) {
     //this ques is same as subarray sum equal k
-    
+    //.
     map<int,int>mp;
     mp[0]=1;
     int count=0;
