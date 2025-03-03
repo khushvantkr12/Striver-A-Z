@@ -1,5 +1,8 @@
 //https://leetcode.com/problems/n-queens/description/
-//TC-O(n! * n)-->n is for check function,,,n! for backtracking
+//TC-O(n!)
+// The first queen has n choices.
+// The second queen has at most (n-1) choices.
+// The third queen has at most (n-2) choices, and so on.
 //SC-O(n^2)//due to 2D grid
 class Solution {
 public:
