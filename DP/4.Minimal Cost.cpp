@@ -35,7 +35,7 @@ public:
 
         //TABULATION
         int n=arr.size();
-        vector<int> dp(arr.size(), 0); 
+        vector<int> dp(n, 0); 
         
         for(int i=n-2; i>=0; i--){
             int mini=INT_MAX;

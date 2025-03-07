@@ -29,6 +29,29 @@ class Solution {
        return max({x,y,z});
     }
 };
+//TABULATION
+class Solution {
+public:
+    int maximumPoints(vector<vector<int>>& points, int n) {
+        vector<vector<int>> dp(n, vector<int>(3, 0));
+
+        // Base case: Last row is the same as points[n-1]
+        dp[n - 1][0] = points[n - 1][0];
+        dp[n - 1][1] = points[n - 1][1];
+        dp[n - 1][2] = points[n - 1][2];
+
+        // Fill DP table from back to front
+        for (int index = n - 2; index >= 0; index--) {
+            dp[index][0] = points[index][0] + max(dp[index + 1][1], dp[index + 1][2]);
+            dp[index][1] = points[index][1] + max(dp[index + 1][0], dp[index + 1][2]);
+            dp[index][2] = points[index][2] + max(dp[index + 1][0], dp[index + 1][1]);
+        }
+
+        // Maximum value among the choices at the first index
+        return max(dp[0][0], max(dp[0][1], dp[0][2]));
+    }
+};
+
 
 //DRY RUN
 Input:

@@ -24,6 +24,34 @@ class Solution{
         // Your code goes here
         vector<vector<int>>dp(n,vector<int>(sum+1,-1));
         return f(0,sum,arr,dp,n)%MOD;
-	}
-	  
+	}	  
+};
+
+class Solution {
+public:
+    int MOD = 1e9 + 7;
+
+    int perfectSum(vector<int>& arr, int target) {
+        int n = arr.size();
+        vector<vector<int>> dp(n + 1, vector<int>(target + 1, 0));
+
+        // Base case: If target is 0, there is 1 way (empty subset)
+        for (int i = n; i >=0; i--) {
+            dp[i][0] = 1;
+        }
+
+        // Fill DP table from bottom to top
+        for (int ind = n - 1; ind >= 0; ind--) {
+            for (int t = 0; t <= target; t++) {
+                int not_take = dp[ind + 1][t] % MOD;
+                int take = 0;
+                if (t >= arr[ind]) {
+                    take = dp[ind + 1][t - arr[ind]] % MOD;
+                }
+                dp[ind][t] = (take + not_take) % MOD;
+            }
+        }
+
+        return dp[0][target];
+    }
 };

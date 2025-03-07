@@ -31,34 +31,32 @@ public:
         vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
         return solve(0, 0, arr, sum, dp);
     }
-};
+
 
 //TABULATION
-class Solution{   
-public:
-    bool isSubsetSum(vector<int>arr, int sum){
+bool isSubsetSum(vector<int>& arr, int target) {
+        // code here
         int n=arr.size();
-       vector<vector<int>>dp(arr.size(),vector<int>(sum+1,0));
-       
-       //BASE CASE
-      for (int ind = n - 1; ind >= 0; --ind)
-    {
-        dp[ind][0] = true;//dekho sochna aise hai ki agar sum=0 hua to index kya kya hoskta hai..
-    }
-        //BASE CASE
-        dp[n - 1][arr[n - 1]] = true;//same yaha pe agar index agar last pe pahuch gya to kya ho skta hai
+        //vector<vector<int>>dp(n+1,vector<int>(target+1,-1));
+        vector<vector<bool>>dp(n+1,vector<bool>(target+1,false));
+        //return solve(0,arr,target,dp);
+        
+        for (int i = 0; i <= n; i++) {
+          dp[i][0] = true;//dekho sochna aise hai ki agar sum=0 hua to index kya kya hoskta hai..
+        }
     
-       //actual code
-        for (int ind = n - 2; ind >= 0; --ind)//why n-2 because in upper code we actually runs from n-1..
-    {
-        for (int tar = 1; tar <= sum; ++tar)
-        {
-
-            int take = (tar >= arr[ind]) ? dp[ind + 1][tar - arr[ind]] : false;
-            int not_take = dp[ind + 1][tar];
-            dp[ind][tar] = take || not_take;
+    // Fill the dp table
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 1; j <= target; j++) {
+            bool skip = dp[i + 1][j];
+            bool take=false;
+            if(j-arr[i]>=0){
+                take=dp[i+1][j-arr[i]];
+            }
+            dp[i][j] = take || skip;
         }
     }
-        return dp[0][sum];
-    }
+    
+    return dp[0][target];
+    }     
 };
