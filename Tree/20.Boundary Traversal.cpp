@@ -38,24 +38,19 @@ public:
         temp.push_back(root->data);  // add after recursion to reverse the order
     }
 
-    vector<int> boundary(Node *root)
+    vector<int> boundaryTraversal(Node *root)
     {
         vector<int> temp;
        
           if((root->left!=NULL&& root->right!=NULL)|| (root->left!=NULL&& root->right==NULL)|| (root->left==NULL&& root->right!=NULL)){
               temp.push_back(root->data);
           }
-        // Add left boundary nodes excluding the root and leaf nodes
-        if (root->left!=NULL) {
-            Leftboundarynodes(root->left, temp);
-        }
-       //add leaf
+     
+        
+        Leftboundarynodes(root->left, temp);
         Leafnodes(root, temp);
-
-        // Add right boundary nodes excluding the root and leaf nodes, in reverse order
-        if (root->right!=NULL) {
-            Reverserightboundarynodes(root->right, temp);
-        }
+        Reverserightboundarynodes(root->right, temp);
+     
 
         return temp;
     }

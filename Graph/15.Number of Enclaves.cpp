@@ -51,3 +51,53 @@ public:
         return count;
     }
 };
+
+//BFS
+class Solution {
+public:
+    int numEnclaves(vector<vector<int>>& grid) {
+           int n = grid.size(), m = grid[0].size();
+        vector<vector<int>> vis(n, vector<int>(m, 0));
+        queue<pair<int, int>> q;
+
+       
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if ((i == 0 || j == 0 || i == n - 1 || j == m - 1) && grid[i][j] == 1) {
+                    q.push({i, j});
+                    vis[i][j] = 1;
+                }
+            }
+        }
+
+        
+        int dx[] = {0, 1, 0, -1};
+        int dy[] = {1, 0, -1, 0};
+
+        while (!q.empty()) {
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+
+            for (int i = 0; i < 4; i++) {
+                int newX = x + dx[i];
+                int newY = y + dy[i];
+
+                if (newX >= 0 && newX < n && newY >= 0 && newY < m && !vis[newX][newY] && grid[newX][newY] == 1) {
+                    q.push({newX, newY});
+                    vis[newX][newY] = 1;
+                }
+            }
+        }
+        int count=0;
+       
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (!vis[i][j] && grid[i][j] == 1) {
+                   count++;  
+                }
+            }
+        }
+        return count;
+    }
+};

@@ -52,3 +52,52 @@ public:
         }
     }
 };
+
+//BFS
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        int n = board.size(), m = board[0].size();
+        vector<vector<int>> vis(n, vector<int>(m, 0));
+        queue<pair<int, int>> q;
+
+        // Step 1: Push all boundary 'O' cells into the queue
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if ((i == 0 || j == 0 || i == n - 1 || j == m - 1) && board[i][j] == 'O') {
+                    q.push({i, j});
+                    vis[i][j] = 1;
+                }
+            }
+        }
+
+        // Step 2: BFS to mark all connected 'O's from the boundary
+        int dx[] = {0, 1, 0, -1};
+        int dy[] = {1, 0, -1, 0};
+
+        while (!q.empty()) {
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+
+            for (int i = 0; i < 4; i++) {
+                int newX = x + dx[i];
+                int newY = y + dy[i];
+
+                if (newX >= 0 && newX < n && newY >= 0 && newY < m && !vis[newX][newY] && board[newX][newY] == 'O') {
+                    q.push({newX, newY});
+                    vis[newX][newY] = 1;
+                }
+            }
+        }
+
+        // Step 3: Convert all unvisited 'O' to 'X' and restore boundary-connected 'O'
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (!vis[i][j] && board[i][j] == 'O') {
+                    board[i][j] = 'X';  // Flip surrounded regions
+                }
+            }
+        }
+    }
+};

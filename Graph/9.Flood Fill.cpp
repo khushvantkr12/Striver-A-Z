@@ -31,3 +31,48 @@ public:
         return image;
     }
 };
+
+//BFS
+//TC-O(n*m)
+//SC-O(n*m) in best case O(1)
+#include <vector>
+#include <queue>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int n = image.size();
+        int m = image[0].size();
+        int originalColor = image[sr][sc];
+
+        if (originalColor == color) {
+            return image;  // Avoid infinite loops if already filled
+        }
+
+        queue<pair<int, int>> q;
+        q.push({sr, sc});
+        image[sr][sc] = color;  // Color the starting pixel
+
+        int d1[4] = {-1, 1, 0, 0};  
+        int d2[4] = {0, 0, -1, 1}; 
+
+        while (!q.empty()) {
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+
+            for (int i = 0; i < 4; i++) {
+                int dx = d1[i] + x;
+                int dy = d2[i] + y;
+
+                if (dx >= 0 && dx < n && dy >= 0 && dy < m && image[dx][dy] == originalColor) {
+                    q.push({dx, dy});
+                    image[dx][dy] = color;  // Update color directly
+                }
+            }
+        }
+
+        return image;
+    }
+};
