@@ -4,6 +4,7 @@ class Solution {
 public:
     TreeNode* solve(TreeNode* root, TreeNode* p, TreeNode* q){
         //base
+        //LCA def-apne ancestor ko khojna hai jo dono nodes ko contain karta ho
        if(root==NULL || root==p || root==q){
         return root;
        }

@@ -1,5 +1,8 @@
 //https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1
 
+////idea is keep pushing level and val in queue and if it process right then add +1 else -1..
+//then push it into stack..then take a map and comapre if level is not repeated previously 
+//in stack if it then ignore otherwise push into map..then finally push into vector from map..
 class Solution {
   public:
     vector <int> bottomView(Node *root) {
